@@ -29,7 +29,7 @@ class Program
         return square;
     }
     static void DisplayResult(string name, int square){
-        Console.WriteLine($"{name} the square of your number is {square}");
+        Console.WriteLine($"{name} the square of the number you inputted is: {square}");
 
     }
 }
