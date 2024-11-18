@@ -1,51 +1,76 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-public class Journal{
-    public List<Entry> _entries;
 
-    public void  AddEntry(Entry newEntry){
+public class Journal
+{
+    private List<Entry> _entries;
+
+    public Journal()
+    {
+        _entries = new List<Entry>();
+    }
+
+    public void AddEntry(Entry newEntry)
+    {
         _entries.Add(newEntry);
     }
-    public void DisplayAll(){
-        foreach(Entry entry in _entries){
+
+    public void DisplayAll()
+    {
+        Console.Clear();
+        Console.WriteLine("Journal Entries:");
+        foreach (Entry entry in _entries)
+        {
             entry.Display();
+            Console.WriteLine("-----------------------------");
         }
+        Console.WriteLine("End of Journal Entries.");
     }
+
     public void SaveToFile(string file)
     {
-        using(StreamWriter writeEntryToFile = new StreamWriter(file))
-    {
-        foreach(Entry entry in _entries){
-            writeEntryToFile.WriteLine(entry.ToString());
-            writeEntryToFile.WriteLine("-----------------------------");
+        using (StreamWriter writeEntryToFile = new StreamWriter(file))
+        {
+            foreach (Entry entry in _entries)
+            {
+                writeEntryToFile.WriteLine(entry.ToString());
+                writeEntryToFile.WriteLine("-----------------------------");
+            }
         }
     }
 
-    }
-    public void LoadFromFile(string file){
+    public void LoadFromFile(string file)
+    {
         _entries.Clear();
-        if(!File.Exists(file)){
+
+        if (!File.Exists(file))
+        {
             Console.WriteLine("File not found");
             return;
         }
-        string [] lineInFile = File.ReadAllLines(file);
+
+        string[] linesInFile = File.ReadAllLines(file);
         List<string> dataToBeLoaded = new List<string>();
-        foreach(string eachLineInFIle in lineInFile){
-            if(eachLineInFIle == "-----------------------------"){
-                if(dataToBeLoaded.Count >= 3){
+
+        foreach (string eachLineInFile in linesInFile)
+        {
+            if (eachLineInFile == "-----------------------------")
+            {
+                if (dataToBeLoaded.Count >= 3)
+                {
                     string date = dataToBeLoaded[0];
                     string prompt = dataToBeLoaded[1];
-                    string activity = dataToBeLoaded[2];
+                    string activity = string.Join(Environment.NewLine, dataToBeLoaded.GetRange(2, dataToBeLoaded.Count - 2));
                     _entries.Add(new Entry(date, prompt, activity));
                 }
                 dataToBeLoaded.Clear();
             }
-            else{
-                dataToBeLoaded.Add(eachLineInFIle);
-            }
-
+            else
+            {
+                dataToBeLoaded.Add(eachLineInFile);
             }
         }
-
+    }
 }
+

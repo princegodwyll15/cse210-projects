@@ -1,8 +1,16 @@
 using System;
 using System.Collections.Generic;
-public class PromptGenerator{
-    public static List<string> prompts = new List<string>
+
+public class PromptGenerator
+{
+    private static Random random = new Random();
+    private static List<string> prompts = new List<string>
     {
+        "What am I grateful for today?",
+        "What did I learn today?",
+        "Write a short story using only 50 words.",
+        "Describe a place you've never been.",
+        "Write a poem about your mood.",
         "What am I grateful for today?",
         "What did I learn today?",
         "Write a short story using only 50 words.",
@@ -32,13 +40,12 @@ public class PromptGenerator{
 
     };
 
-public string GetRandomPrompt()
-{
-    Random random = new Random();
-    return "Today's Journal Activity: " + prompts[random.Next(0, prompts.Count)];
+    public static string GetRandomPrompt()
+    {
+        return prompts[random.Next(0, prompts.Count)];
+    }
 }
 
 
-    }
 
 
