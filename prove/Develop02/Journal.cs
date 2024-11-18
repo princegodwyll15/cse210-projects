@@ -25,7 +25,6 @@ public class Journal
             entry.Display();
             Console.WriteLine("-----------------------------");
         }
-        Console.WriteLine("End of Journal Entries.");
     }
 
     public void SaveToFile(string file)
