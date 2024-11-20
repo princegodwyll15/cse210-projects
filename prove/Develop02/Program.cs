@@ -45,7 +45,6 @@ class Program
 
     static void DisplayMenu()
     {
-        Console.Clear();
         Console.WriteLine("Welcome to Journal Maker");
         Console.WriteLine("----------------------------");
         Console.WriteLine("1. Write");

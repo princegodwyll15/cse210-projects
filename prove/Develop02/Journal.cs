@@ -16,16 +16,23 @@ public class Journal
         _entries.Add(newEntry);
     }
 
-    public void DisplayAll()
+public void DisplayAll()
+{
+    Console.WriteLine("This is the list of your already inputted activities for today.");
+
+    if (_entries.Count == 0)
     {
-        Console.Clear();
-        Console.WriteLine("Journal Entries:");
+        Console.WriteLine("No activities added yet.");
+    }
+    else
+    {
         foreach (Entry entry in _entries)
         {
             entry.Display();
             Console.WriteLine("-----------------------------");
         }
     }
+}
 
     public void SaveToFile(string file)
     {
@@ -35,6 +42,7 @@ public class Journal
             {
                 writeEntryToFile.WriteLine(entry.ToString());
                 writeEntryToFile.WriteLine("-----------------------------");
+                Console.WriteLine();
             }
         }
     }
@@ -72,4 +80,5 @@ public class Journal
         }
     }
 }
+
 
