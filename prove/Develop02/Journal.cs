@@ -18,14 +18,16 @@ public class Journal
 
 public void DisplayAll()
 {
-    Console.WriteLine("This is the list of your already inputted activities for today.");
-
+    
     if (_entries.Count == 0)
     {
         Console.WriteLine("No activities added yet.");
+        Console.WriteLine();
     }
     else
     {
+        Console.WriteLine("This is the list of your already inputted activities for today.");
+        Console.WriteLine();
         foreach (Entry entry in _entries)
         {
             entry.Display();
@@ -34,19 +36,26 @@ public void DisplayAll()
     }
 }
 
-    public void SaveToFile(string file)
+public void SaveToFile(string fileName)
     {
-        using (StreamWriter writeEntryToFile = new StreamWriter(file))
-        {
-            foreach (Entry entry in _entries)
-            {
-                writeEntryToFile.WriteLine(entry.ToString());
-                writeEntryToFile.WriteLine("-----------------------------");
-                Console.WriteLine();
-            }
-        }
-    }
 
+        // Ensure file extension
+        if (!fileName.Contains("."))
+        {
+            fileName += ".txt";
+            
+        }
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                foreach (Entry entry in _entries)
+                {
+                    writer.WriteLine(entry.ToString());
+                    writer.WriteLine("-----------------------------");
+                }
+            }
+            Console.WriteLine($"Entries saved to {fileName}");
+        }
+        
     public void LoadFromFile(string file)
     {
         _entries.Clear();

@@ -57,7 +57,7 @@ class Program
 
     static void WriteEntry()
     {
-    journal.DisplayAll();
+    Console.WriteLine();
     string prompt = PromptGenerator.GetRandomPrompt();
     Console.WriteLine($"Prompt: {prompt}");
     Console.Write("Your response: ");
@@ -74,15 +74,17 @@ class Program
     }
 
     static void LoadJournal()
-    {
-        Console.Write("Enter journal file name: ");
+    {   Console.WriteLine();
+        Console.Write("Enter journal file name to load: ");
         string fileName = Console.ReadLine();
+        Console.WriteLine();
+        Console.WriteLine($"This is the list of activities you have in your {fileName}");
         journal.LoadFromFile(fileName);
         journal.DisplayAll();
     }
 
 static void SaveJournal()
-{
+{   Console.WriteLine();
     Console.Write("Enter journal file name: ");
     string fileName = Console.ReadLine();
     journal.SaveToFile(fileName);
