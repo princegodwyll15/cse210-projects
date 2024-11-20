@@ -78,7 +78,7 @@ class Program
         Console.Write("Enter journal file name to load: ");
         string fileName = Console.ReadLine();
         Console.WriteLine();
-        Console.WriteLine($"This is the list of activities you have in your {fileName}");
+        Console.WriteLine($"This is the list of activities you have in your {fileName.ToUpper()}");
         journal.LoadFromFile(fileName);
         journal.DisplayAll();
     }
