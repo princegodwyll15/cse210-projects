@@ -22,6 +22,7 @@ class Program
         int topToInt = int.Parse(top);
         Console.Write("Enter the number to be used as your fraction denumenator: ");
         string bottom = Console.ReadLine();
+        int bottomToInt = int.Parse(bottom);
         Console.WriteLine();
 
 
@@ -34,6 +35,16 @@ class Program
         Fraction f2 = new Fraction(topToInt);
         Console.WriteLine(f2.GetDecimalValue());
         Console.WriteLine(f2.GetFractionString());
+        Console.WriteLine();
+
+        Fraction f3 = new Fraction(topToInt, bottomToInt);
+        Console.WriteLine(f3.GetDecimalValue());
+        Console.WriteLine(f3.GetFractionString());
+        Console.WriteLine();
+
+        Fraction f4 = new Fraction(9, 9);
+        Console.WriteLine(f4.GetDecimalValue());
+        Console.WriteLine(f4.GetFractionString());
 
 
 

@@ -39,7 +39,7 @@ class Fraction{
     }
     public double GetDecimalValue(){
 
-        return GetTop()/GetBottom();
+        return (double)_top / (double)_bottom;
     }
 
 }
