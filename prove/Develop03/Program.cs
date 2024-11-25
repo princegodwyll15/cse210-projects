@@ -27,7 +27,7 @@ class Program
 
         while (start.ToLower() != "quit")
         {
-            int numberToHide = 1; // you can adjust this value
+            int numberToHide = 1; 
             scripture1.HideRandomWords(numberToHide);
             Console.WriteLine(scripture1.GetDisplayText());
             Console.Write("Press ENTER to hide more or quit to stop: ");
