@@ -1,67 +1,36 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
+class Program{
+    static void Main(string[] args){
+        Video video1 = new Video("Lily and the beast" , "Micheal Jordan", 3000);
+        Comment comment1 = new Comment();
 
-class Program
-{
-    static void Main(string[] args)
-    //get whether the blinds will be used for LivingRomm or Kichten
-    {  
-    
-    void GetLocationAndSpecifications()  
-    {
-       Console.WriteLine("Weclome To Princes Blinds Ventures");
-       Console.WriteLine();
+        string detailsOfVideo = video1.GetDetailsOfVideo();
+        Console.WriteLine(detailsOfVideo);
+        Console.WriteLine();
 
-       Console.Write("Where do you want the blinds for. ");
-       string getLocation = Console.ReadLine();
-       Console.Write("Sir Please whats your name. ");
-       string _getOwner = Console.ReadLine();
-       Console.WriteLine();
+        while (true)
+        {
+        Console.Write("Please enter your name here to procceed to write a comment on this video: ");
+        string getName = Console.ReadLine();
 
-       Console.Write($"Whats the width of the {getLocation} you wan the blinds for? ");
-       string getWidth = Console.ReadLine();
-       double getWidthToDouble = double.Parse(getWidth);
-
-       Console.Write($"Whats the Height of the {getLocation} you wan the blinds for? ");
-       string getHeight = Console.ReadLine();
-       double getHeightToDouble = double.Parse(getHeight);
-
-       Console.Write("Whcih color do you want? ");
-       string getColor = Console.ReadLine();
-       Console.WriteLine();
-
-
-       if(getLocation.ToLower() == "kitchen")
-       {
-            Blinds Kitchen = new Blinds();
-            House PrincesHouse = new House();
-
-            Kitchen._color = getColor;
-            Kitchen._height = getHeightToDouble;
-            Kitchen._width =getWidthToDouble;
-            PrincesHouse._owner = _getOwner;
-            PrincesHouse._blind.Add(Kitchen);
-
-            double area = Kitchen.GetArea();
-            double price = Kitchen.GetPrice();
-
-            Console.WriteLine("Please confirm your order for this partculars.");
-            foreach(Blinds eachItem in PrincesHouse._blind ){
-                Console.WriteLine($"Color of the Blinds you want for the {getLocation} is: {eachItem._color}");
-                Console.WriteLine($"The height of the {getLocation} you want the blinds for is: {eachItem._height}");
-                Console.WriteLine($"The width of the {getLocation} you want the blinds for is: {eachItem._width}");
+            if(string.IsNullOrWhiteSpace(getName)){
+                Console.WriteLine("Please enter your name to procceed to write a comment.");
+                break;
             }
-            Console.WriteLine();
+        Console.Write("Please write your comment here: ");
+        string writeAComment = Console.ReadLine();
+        Console.WriteLine();
 
-            Console.WriteLine($"The area of the {getLocation} you wan the blinds for is: {area} cm square.");
-            Console.WriteLine($"MR. {_getOwner} Please, the price assciated with the area is: ${price}.00");
+        string userName = comment1.GetName(getName);
+        string userComment = comment1.GetComments(writeAComment);
+        video1._listOfComments.Add(writeAComment);
+        int numberOfComments = video1.CountComments(0);
 
-
-       }
+        Console.WriteLine($"Name: {userName}");
+        Console.WriteLine($"{userName}'s Comment: {userComment}");
+        Console.WriteLine($"There are {numberOfComments} comments on this video so far.");
+        Console.WriteLine();
+        
+        }
     }
-    //check if location is livingRoom OR Kichten
-
-    GetLocationAndSpecifications();
-       
-}
 }
