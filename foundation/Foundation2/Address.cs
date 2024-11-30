@@ -1,0 +1,28 @@
+using System;
+public class Address{
+    private string _streetAddress;
+    private string _city;
+    private string _stateProvince;
+    private string _country;
+    public Address(string streetAddress, string city, string stateProvince, string country){
+        _streetAddress = streetAddress;
+        _city = city;
+        _country = country;
+        _stateProvince = stateProvince;
+    }
+    
+    public string SetAddress(){
+        return $"Your Address:\n Country: {_country},\n State or Province: {_stateProvince},\n City: {_city},\n Street Address: {_streetAddress}";
+    }
+ public static bool WhetherUsaOrNot(string country)
+    {
+        if (country.ToUpper() != "USA")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}

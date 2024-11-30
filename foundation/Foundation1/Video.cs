@@ -15,7 +15,7 @@ public class Video{
     }
 
     public string GetDetailsOfVideo(){
-        return $"Title Of Video: {_title}.\n Owner Of Video: {_author.ToUpper()}.\n Length Of Video In Seconds:{_length}.";
+        return $"Title Of Video: {_title}.\nOwner Of Video: {_author.ToUpper()}.\nLength Of Video In Seconds:{_length}.";
     }
 
 
