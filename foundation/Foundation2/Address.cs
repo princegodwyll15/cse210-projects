@@ -12,7 +12,7 @@ public class Address{
     }
     
     public string SetAddress(){
-        return $"Your Address:\n Country: {_country},\n State or Province: {_stateProvince},\n City: {_city},\n Street Address: {_streetAddress}";
+        return $"Your Address:\nCountry: {_country}\nState or Province: {_stateProvince}\nCity: {_city}\nStreet Address: {_streetAddress}";
     }
  public static bool WhetherUsaOrNot(string country)
     {

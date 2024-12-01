@@ -20,19 +20,23 @@ public class Order
     public double TotalCost()
     {
         double total = 0;
+        int qauntity = 0;
+        double actTotalCost = 0;
         foreach (Product product in _products)
         {
-            total += product.GetPrice(); // Use the getter method
+            total = product.GetPrice();
+            qauntity = product.GetQuantity(); 
+            actTotalCost = total*qauntity;// Use the getter method
         }
-        return total;
+        return actTotalCost;
     }
 
     public string PackingLabel()
     {
-        string label = "Packing Label:\n";
+        string label ="";
         foreach (Product product in _products)
         {
-            label += $"- {product.GetName()} (ID: {product.GetProductId()})\n";
+            label += $"Product: {product.GetName()} (ID: {product.GetProductId()})\n";
         }
         return label;
     }
