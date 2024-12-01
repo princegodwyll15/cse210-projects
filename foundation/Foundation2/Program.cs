@@ -13,6 +13,7 @@ class Program{
         //set the neccssary for the customer instance
         customer.SetCustomerName("Prince Godwyll");
         customer.SetCustomerAddress(address);  
+       
         Console.WriteLine($"HI Mr. {customer.GetCustomerName()}");
 
         //print shipping and packing label to screen
@@ -23,7 +24,16 @@ class Program{
         Console.WriteLine();
         //set total cost without shipping fee
         Console.WriteLine($"The total cost of your ordered item without shipping fee is: ${order.TotalCost()}.00");
-        Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order.TotalCost()}.00");
+        //address shipping cost to actual cost without shipiing
+        if( customer.GetCountry("Ghana") == true){
+            int shippingCost = 5;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order.TotalCost() + shippingCost}.00");
+        }
+        else{
+            int shippingCost =35;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order.TotalCost() + shippingCost}.00");
+
+        }
         Console.WriteLine();
         Console.WriteLine();
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,7 +58,15 @@ class Program{
         Console.WriteLine();
         //set total cost without shipping fee
         Console.WriteLine($"The total cost of your ordered item without shipping fee is: ${order2.TotalCost()}.00");
-        Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order2.TotalCost()}.00");
+        if( customer2.GetCountry("USA") == true){
+            int shippingCost = 5;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order2.TotalCost() + shippingCost}.00");
+        }
+        else{
+            int shippingCost =35;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order2.TotalCost() + shippingCost}.00");
+
+        }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
         Address address3 = new Address("Bay Street", "Ontario", "Toronto", "Canada");
@@ -70,7 +88,15 @@ class Program{
         Console.WriteLine();
         //set total cost without shipping fee
         Console.WriteLine($"The total cost of your ordered item without shipping fee is: ${order3.TotalCost()}.00");
-        Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order3.TotalCost()}.00");
+        if( customer3.GetCountry("Canada") == true){
+            int shippingCost = 5;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order3.TotalCost() + shippingCost}.00");
+        }
+        else{
+            int shippingCost =35;
+            Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order3.TotalCost() + shippingCost}.00");
+
+        }
 
 
     }

@@ -14,6 +14,13 @@ public class Address{
     public string SetAddress(){
         return $"Your Address:\nCountry: {_country}\nState or Province: {_stateProvince}\nCity: {_city}\nStreet Address: {_streetAddress}";
     }
+    public void SetCountry(string country){
+        _country = country;
+    }
+        public string GetCountry(){
+        return _country;
+    }
+
  public static bool WhetherUsaOrNot(string country)
     {
         if (country.ToUpper() != "USA")

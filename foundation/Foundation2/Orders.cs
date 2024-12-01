@@ -30,13 +30,12 @@ public class Order
         }
         return actTotalCost;
     }
-
     public string PackingLabel()
     {
         string label ="";
         foreach (Product product in _products)
         {
-            label += $"Product: {product.GetName()} (ID: {product.GetProductId()})\n";
+            label += $"Product: {product.GetName()}\nID: {product.GetProductId()}\nPrice Of Product: {product.GetPrice()}\nQauntity Ordered: {product.GetQuantity()}\n";
         }
         return label;
     }
