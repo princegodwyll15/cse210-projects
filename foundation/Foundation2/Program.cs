@@ -13,7 +13,6 @@ class Program{
         //set the neccssary for the customer instance
         customer.SetCustomerName("Prince Godwyll");
         customer.SetCustomerAddress(address);  
-       
         Console.WriteLine($"HI Mr. {customer.GetCustomerName()}");
 
         //print shipping and packing label to screen
@@ -32,11 +31,10 @@ class Program{
         else{
             int shippingCost =35;
             Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order.TotalCost() + shippingCost}.00");
-
         }
         Console.WriteLine();
         Console.WriteLine();
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
 
         Address address2 = new Address("Mayford Street", "San Diego", "Califonia", "USA");
@@ -63,10 +61,10 @@ class Program{
             Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order2.TotalCost() + shippingCost}.00");
         }
         else{
-            int shippingCost =35;
+            int shippingCost = 35;
             Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order2.TotalCost() + shippingCost}.00");
-
         }
+        Console.WriteLine();
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
         Address address3 = new Address("Bay Street", "Ontario", "Toronto", "Canada");
@@ -76,7 +74,7 @@ class Program{
         order3.AddProduct(product3);
 
         //set the neccssary for the customer instance
-        customer3.SetCustomerName("Mooree Bans");
+        customer3.SetCustomerName("Etan Jack");
         customer3.SetCustomerAddress(address3);  
         Console.WriteLine($"HI Mr. {customer3.GetCustomerName()}");
 
@@ -95,7 +93,6 @@ class Program{
         else{
             int shippingCost =35;
             Console.WriteLine($"The total cost of your ordered item with shipping fee inclusive: ${order3.TotalCost() + shippingCost}.00");
-
         }
 
 
