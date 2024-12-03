@@ -40,7 +40,7 @@ public class Order
         return label;
     }
 
-    public void GetShippingLabel(Customer customer)
+    public void ShippingLabel(Customer customer)
     {
         Console.WriteLine($"Shipping Label:\nTo: {customer.GetCustomerName()}\nAddress: {customer.GetCustomerAddress()}");
     }
