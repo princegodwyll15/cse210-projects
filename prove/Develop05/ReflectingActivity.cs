@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-public class ReflectingActivity{
+public class ReflectingActivity : Activity{
     private List<string> _prompts;
     private List<string> _questions;
 
-    ReflectingActivity(){
 
-    }
+public ReflectingActivity() : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience."){}
     public string GetRandomPrompt(){
         return "";
     }
@@ -18,7 +17,7 @@ public class ReflectingActivity{
 
     }
     public void DisplayQuestions(){
-        
+
     }
 
 

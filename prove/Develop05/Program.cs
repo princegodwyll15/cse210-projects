@@ -1,41 +1,62 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
     static void Main(string[] args)
-    {   
-        while(true){
-        ChooseActivity();
-        string activity = Console.ReadLine().ToLower();
-
-        switch (activity)
+    {
+        while (true)
         {
-            case "1":
-            case "Breathing Activity":
-                ChooseActivity();
-                break;
-            case "2":
-            case "Listing Activity":
-                ChooseActivity();
-                break;
-            case "3":
-            case "Reflecting Activity":
-                ChooseActivity();
-                break;
-            default:
-                Console.WriteLine("Invalid choice. Please choose a valid option.");
-                break;
+            ChooseActivity();
+            Console.Write("Please choose a prompt to start with: ");
+            string activity = Console.ReadLine().ToLower();
+            Console.WriteLine();
+            Console.Clear();
+
+            switch (activity)
+            {
+                case "1":
+                case "breathing activity":
+                    BreathingActivity breathingActivity = new BreathingActivity();
+                    breathingActivity.DisplayStartingMessage();
+                    breathingActivity.ShowSpinner();
+                    breathingActivity.Run();
+                    Console.WriteLine();
+                    breathingActivity.DisplayEndingMessage();
+                    break;
+                case "2":
+                case "listing activity":
+                    ListingActivity listingActivity = new ListingActivity();
+                    listingActivity.DisplayStartingMessage();
+                    listingActivity.ShowSpinner();
+                    listingActivity.Run();
+                    listingActivity.DisplayEndingMessage();
+                    break;
+                case "3":
+                case "reflecting activity":
+                    ReflectingActivity reflectingActivity = new ReflectingActivity();
+                    reflectingActivity.DisplayStartingMessage();
+                    reflectingActivity.ShowSpinner();
+                    reflectingActivity.DisplayEndingMessage();
+                    break;
+                case "4":
+                case "quit":
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice. Please choose a valid option.");
+                    break;
+            }
         }
-        }
-        static void ChooseActivity(){
+    }
+
+    static void ChooseActivity()
+    {
         Console.WriteLine("Please Choose an Activity to begin with: ");
         Console.WriteLine("---------------------------------------");
         Console.WriteLine("1. Breathing Activity");
         Console.WriteLine("2. Listing Activity");
         Console.WriteLine("3. Reflecting Activity");
         Console.WriteLine("4. Quit");
-
-        }
     }
 }
+
+
