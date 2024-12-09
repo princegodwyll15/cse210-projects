@@ -22,6 +22,7 @@ class Program
                     breathingActivity.Run();
                     Console.WriteLine();
                     breathingActivity.DisplayEndingMessage();
+                    Console.WriteLine();
                     break;
                 case "2":
                 case "listing activity":
@@ -29,7 +30,9 @@ class Program
                     listingActivity.DisplayStartingMessage();
                     listingActivity.ShowSpinner();
                     listingActivity.Run();
+                    Console.WriteLine();
                     listingActivity.DisplayEndingMessage();
+                    Console.WriteLine();
                     break;
                 case "3":
                 case "reflecting activity":

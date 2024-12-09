@@ -24,8 +24,15 @@ public class ListingActivity : Activity
             "What are personal strengths of yours?",
             "Who are people that you have helped this week?",
             "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
-        };
+            "Who are some of your personal heroes?",
+            "What are things you are grateful for today?",
+            "What are some goals you have for the upcoming week?",
+            "Who is someone you forgive or want to forgive?",
+            "What are some things you are proud of accomplishing?",
+            "Who are people that have made a positive impact in your life?",
+            "What are some things you are looking forward to in the coming months?",
+            "What are some ways you have grown or learned recently?",
+            "Who are people you want to pray for or show kindness to this week?"        };
         Random randomPrompt = new Random();
         Console.WriteLine(_prompts[randomPrompt.Next(0, _prompts.Count)]);
     }
