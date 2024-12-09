@@ -21,7 +21,9 @@ public ReflectingActivity() : base("Reflecting Activity", "This activity will he
         };
 
         Random randomPrompt = new Random();
-        return _prompts[randomPrompt.Next(0, _prompts.Count)];
+        string prompt = _prompts[randomPrompt.Next(0, _prompts.Count)];
+        Console.WriteLine(prompt);
+        return prompt;
     }
     public string GetRandomQuestion(){
         _questions = new List<string>(){
@@ -45,7 +47,9 @@ public ReflectingActivity() : base("Reflecting Activity", "This activity will he
             "What is one thing you will always remember about this experience?"
         };
         Random randomQuestion = new Random();
-        return _questions[randomQuestion.Next(0, _questions.Count)];
+        string question =  _questions[randomQuestion.Next(0, _questions.Count)];
+        Console.WriteLine(question);
+        return question;
     }
     public void DisplayPrompts(){
 

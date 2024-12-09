@@ -39,6 +39,8 @@ class Program
                     ReflectingActivity reflectingActivity = new ReflectingActivity();
                     reflectingActivity.DisplayStartingMessage();
                     reflectingActivity.ShowSpinner();
+                    reflectingActivity.DisplayPrompts();
+                    reflectingActivity.DisplayQuestions();
                     reflectingActivity.DisplayEndingMessage();
                     break;
                 case "4":
