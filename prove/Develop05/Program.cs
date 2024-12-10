@@ -40,10 +40,9 @@ class Program
                     reflectingActivity.DisplayStartingMessage();
                     reflectingActivity.ShowSpinner();
                     reflectingActivity.GetRandomPrompt();
-                    reflectingActivity.GetRandomQuestion();
-                    reflectingActivity.DisplayPrompts();
                     reflectingActivity.DisplayQuestions();
                     reflectingActivity.DisplayEndingMessage();
+                    Console.WriteLine();
 
                     break;
                 case "4":

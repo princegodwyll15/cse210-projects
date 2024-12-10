@@ -27,7 +27,7 @@ public class ReflectingActivity : Activity
 
         Random randomPrompt = new Random();
         string prompt = _prompts[randomPrompt.Next(0, _prompts.Count)];
-        Console.WriteLine($"activity to reflect on: {prompt}");
+        Console.WriteLine($"Activity to reflect on: {prompt}");
         return prompt;
     }
 
@@ -57,13 +57,13 @@ public class ReflectingActivity : Activity
 
         Random randomQuestion = new Random();
         string question = _questions[randomQuestion.Next(0, _questions.Count)];
-        Console.WriteLine($"Questions to reflect this activity: {question}");
+        Console.WriteLine($"Questions to reflect on: {question}");
         return question;
     }
 
     public void DisplayPrompts()
     {
-        Console.WriteLine("Enter your answer here: ");
+        Console.Write("Enter your answer here: ");
         Console.ReadLine();
     }
 
@@ -77,9 +77,8 @@ public void DisplayQuestions()
         GetRandomQuestion();
         DisplayPrompts();
         ShowSpinner();
-        ShowCountDown(2);
+        Console.WriteLine();
     }
-
     Console.WriteLine("Time's up!");
     }
 }
