@@ -1,14 +1,19 @@
 using System;
-using System.Collections.Generic;
-
-public class ReflectingActivity : Activity{
+public class ReflectingActivity : Activity
+{
+    private int _count;
     private List<string> _prompts;
     private List<string> _questions;
 
+    public ReflectingActivity() 
+        : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience.")
+    {
+    }
 
-public ReflectingActivity() : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience."){}
-    public string GetRandomPrompt(){
-        _prompts = new List<string>(){
+    public string GetRandomPrompt()
+    {
+        _prompts = new List<string>()
+        {
             "Think of a time when you stood up for someone else.",
             "Think of a time when you did something really difficult.",
             "Think of a time when you helped someone in need.",
@@ -22,11 +27,14 @@ public ReflectingActivity() : base("Reflecting Activity", "This activity will he
 
         Random randomPrompt = new Random();
         string prompt = _prompts[randomPrompt.Next(0, _prompts.Count)];
-        Console.WriteLine(prompt);
+        Console.WriteLine($"activity to reflect on: {prompt}");
         return prompt;
     }
-    public string GetRandomQuestion(){
-        _questions = new List<string>(){
+
+    public string GetRandomQuestion()
+    {
+        _questions = new List<string>()
+        {
             "Why was this experience meaningful to you?",
             "Have you ever done anything like this before?",
             "How did you get started?",
@@ -44,19 +52,34 @@ public ReflectingActivity() : base("Reflecting Activity", "This activity will he
             "What are some ways you can apply the lessons you learned from this experience to your daily life?",
             "How did this experience shape your perspective or worldview?",
             "What are some things you would do differently if faced with a similar experience in the future?",
-            "What is one thing you will always remember about this experience?"
+            "What is one thing you will always remember about this experience?"
         };
+
         Random randomQuestion = new Random();
-        string question =  _questions[randomQuestion.Next(0, _questions.Count)];
-        Console.WriteLine(question);
+        string question = _questions[randomQuestion.Next(0, _questions.Count)];
+        Console.WriteLine($"Questions to reflect this activity: {question}");
         return question;
     }
-    public void DisplayPrompts(){
 
+    public void DisplayPrompts()
+    {
+        Console.WriteLine("Enter your answer here: ");
+        Console.ReadLine();
     }
-    public void DisplayQuestions(){
 
+public void DisplayQuestions()
+{
+    int totalDuration = GetDuration();
+    DateTime startTime = DateTime.Now;
+
+    while ((DateTime.Now - startTime).TotalSeconds < totalDuration)
+    {
+        GetRandomQuestion();
+        DisplayPrompts();
+        ShowSpinner();
+        ShowCountDown(2);
     }
 
-
+    Console.WriteLine("Time's up!");
+    }
 }

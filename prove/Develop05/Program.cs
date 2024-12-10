@@ -39,9 +39,12 @@ class Program
                     ReflectingActivity reflectingActivity = new ReflectingActivity();
                     reflectingActivity.DisplayStartingMessage();
                     reflectingActivity.ShowSpinner();
+                    reflectingActivity.GetRandomPrompt();
+                    reflectingActivity.GetRandomQuestion();
                     reflectingActivity.DisplayPrompts();
                     reflectingActivity.DisplayQuestions();
                     reflectingActivity.DisplayEndingMessage();
+
                     break;
                 case "4":
                 case "quit":

@@ -22,7 +22,6 @@ public class Activity
         Console.Write($"How long in seconds would you like to take this activity: ");
         _duration = int.Parse(Console.ReadLine());
         Console.WriteLine("Get ready...");
-        ShowCountDown(2);
         Console.WriteLine("Start!");
     }
 
