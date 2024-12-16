@@ -9,10 +9,27 @@ public abstract class Goal
         this.points = points;
     }
 
-    public string Name => name;
-    public int Points => points;
+    public string GetName()
+    {
+        return name;
+    }
 
-    public abstract void RecordEvent();
+    public void SetName(string value)
+    {
+        name = value;
+    }
+
+    public int GetPoints()
+    {
+        return points;
+    }
+
+    public void SetPoints(int value)
+    {
+        points = value;
+    }
+
+    public abstract void RecordEvent(ref int score);
+    public abstract string GetStatus();
+    public abstract string Serialize();
 }
-
-

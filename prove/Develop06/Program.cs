@@ -1,35 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public class Program
 {
+    private static int score = 0;
+    private static List<Goal> goals = new List<Goal>();
+
     public static void Main()
     {
-        var goals = new List<Goal>();
+        LoadGoals();
         Console.WriteLine("Welcome to the Eternal Quest program!");
 
         while (true)
         {
             Console.WriteLine("\nWhat would you like to do?");
+            Console.WriteLine($"Score: {score}");
             Console.WriteLine("1. Create a new goal");
             Console.WriteLine("2. Record an event for a goal");
             Console.WriteLine("3. View all goals");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Save and Exit");
 
             var choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
-                    CreateNewGoal(goals);
+                    CreateNewGoal();
                     break;
                 case "2":
-                    RecordEventForGoal(goals);
+                    RecordEventForGoal();
                     break;
                 case "3":
-                    ViewAllGoals(goals);
+                    ViewAllGoals();
                     break;
                 case "4":
+                    SaveGoals();
                     Console.WriteLine("Goodbye!");
                     return;
                 default:
@@ -39,7 +45,7 @@ public class Program
         }
     }
 
-    private static void CreateNewGoal(List<Goal> goals)
+    private static void CreateNewGoal()
     {
         Console.WriteLine("\nWhat type of goal would you like to create?");
         Console.WriteLine("1. Simple goal");
@@ -51,13 +57,13 @@ public class Program
         switch (choice)
         {
             case "1":
-                CreateSimpleGoal(goals);
+                CreateSimpleGoal();
                 break;
             case "2":
-                CreateEternalGoal(goals);
+                CreateEternalGoal();
                 break;
             case "3":
-                CreateChecklistGoal(goals);
+                CreateChecklistGoal();
                 break;
             default:
                 Console.WriteLine("Invalid choice. Please try again.");
@@ -65,7 +71,7 @@ public class Program
         }
     }
 
-    private static void CreateSimpleGoal(List<Goal> goals)
+    private static void CreateSimpleGoal()
     {
         Console.Write("Enter the name of the goal: ");
         var name = Console.ReadLine();
@@ -76,7 +82,7 @@ public class Program
         Console.WriteLine($"Simple goal '{name}' created successfully!");
     }
 
-    private static void CreateEternalGoal(List<Goal> goals)
+    private static void CreateEternalGoal()
     {
         Console.Write("Enter the name of the goal: ");
         var name = Console.ReadLine();
@@ -87,7 +93,7 @@ public class Program
         Console.WriteLine($"Eternal goal '{name}' created successfully!");
     }
 
-    private static void CreateChecklistGoal(List<Goal> goals)
+    private static void CreateChecklistGoal()
     {
         Console.Write("Enter the name of the goal: ");
         var name = Console.ReadLine();
@@ -97,10 +103,10 @@ public class Program
         var targetCount = int.Parse(Console.ReadLine());
 
         goals.Add(new ChecklistGoal(name, points, targetCount));
-        Console.WriteLine($"Checklist goal '{name}' with a target of {targetCount} completions created successfully!");
+        Console.WriteLine($"Checklist goal '{name}' created successfully!");
     }
 
-    private static void RecordEventForGoal(List<Goal> goals)
+    private static void RecordEventForGoal()
     {
         if (goals.Count == 0)
         {
@@ -111,13 +117,13 @@ public class Program
         Console.WriteLine("\nSelect a goal to record an event for:");
         for (int i = 0; i < goals.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {goals[i].Name}");
+            Console.WriteLine($"{i + 1}. {goals[i].GetStatus()} {goals[i].GetName()}");
         }
 
         var choice = int.Parse(Console.ReadLine());
         if (choice > 0 && choice <= goals.Count)
         {
-            goals[choice - 1].RecordEvent();
+            goals[choice - 1].RecordEvent(ref score);
         }
         else
         {
@@ -125,7 +131,7 @@ public class Program
         }
     }
 
-    private static void ViewAllGoals(List<Goal> goals)
+    private static void ViewAllGoals()
     {
         if (goals.Count == 0)
         {
@@ -133,22 +139,51 @@ public class Program
             return;
         }
 
-        Console.WriteLine("\nHere are all the goals:");
+        Console.WriteLine("\nHere are all your goals:");
         foreach (var goal in goals)
         {
-            Console.WriteLine($"- {goal.Name} ({goal.Points} points)");
-            if (goal is SimpleGoal simpleGoal)
+            Console.WriteLine($"{goal.GetStatus()} {goal.GetName()}");
+        }
+    }
+
+    private static void SaveGoals()
+    {
+        using (var writer = new StreamWriter("goals.txt"))
+        {
+            writer.WriteLine(score);
+            foreach (var goal in goals)
             {
-                Console.WriteLine($"  Completed: {simpleGoal.IsCompleted}");
-            }
-            else if (goal is EternalGoal eternalGoal)
-            {
-                Console.WriteLine($"  Times recorded: {eternalGoal.TimesRecorded}");
-            }
-            else if (goal is ChecklistGoal checklistGoal)
-            {
-                Console.WriteLine($"  Progress: {checklistGoal.CurrentCount}/{checklistGoal.TargetCount}");
+                writer.WriteLine(goal.Serialize());
             }
         }
+        Console.WriteLine("Goals and score saved successfully!");
+    }
+
+    private static void LoadGoals()
+    {
+        if (!File.Exists("goals.txt")) return;
+
+        using (var reader = new StreamReader("goals.txt"))
+        {
+            score = int.Parse(reader.ReadLine());
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                var parts = line.Split('|');
+                switch (parts[0])
+                {
+                    case "SimpleGoal":
+                        goals.Add(SimpleGoal.Deserialize(parts));
+                        break;
+                    case "EternalGoal":
+                        goals.Add(EternalGoal.Deserialize(parts));
+                        break;
+                    case "ChecklistGoal":
+                        goals.Add(ChecklistGoal.Deserialize(parts));
+                        break;
+                }
+            }
+        }
+        Console.WriteLine("Goals and score loaded successfully!");
     }
 }

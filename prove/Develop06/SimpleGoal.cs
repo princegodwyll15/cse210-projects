@@ -7,18 +7,44 @@ public class SimpleGoal : Goal
         isCompleted = false;
     }
 
-    public bool IsCompleted => isCompleted;
+    public bool GetIsCompleted()
+    {
+        return isCompleted;
+    }
 
-    public override void RecordEvent()
+    public void SetIsCompleted(bool value)
+    {
+        isCompleted = value;
+    }
+
+    public override void RecordEvent(ref int score)
     {
         if (!isCompleted)
         {
             isCompleted = true;
-            Console.WriteLine($"Congratulations! You completed the goal '{Name}' and earned {Points} points.");
+            score += GetPoints();
+            Console.WriteLine($"You completed the goal '{GetName()}' and earned {GetPoints()} points!");
         }
         else
         {
-            Console.WriteLine($"You've already completed the goal '{Name}'.");
+            Console.WriteLine($"The goal '{GetName()}' is already completed.");
         }
+    }
+
+    public override string GetStatus()
+    {
+        return isCompleted ? "[X]" : "[ ]";
+    }
+
+    public override string Serialize()
+    {
+        return $"SimpleGoal|{GetName()}|{GetPoints()}|{isCompleted}";
+    }
+
+    public static SimpleGoal Deserialize(string[] parts)
+    {
+        var goal = new SimpleGoal(parts[1], int.Parse(parts[2]));
+        goal.SetIsCompleted(bool.Parse(parts[3]));
+        return goal;
     }
 }

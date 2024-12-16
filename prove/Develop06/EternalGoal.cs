@@ -7,11 +7,37 @@ public class EternalGoal : Goal
         timesRecorded = 0;
     }
 
-    public int TimesRecorded => timesRecorded;
+    public int GetTimesRecorded()
+    {
+        return timesRecorded;
+    }
 
-    public override void RecordEvent()
+    public void SetTimesRecorded(int value)
+    {
+        timesRecorded = value;
+    }
+
+    public override void RecordEvent(ref int score)
     {
         timesRecorded++;
-        Console.WriteLine($"You recorded the eternal goal '{Name}' and earned {Points} points. You've recorded this goal {timesRecorded} times.");
+        score += GetPoints();
+        Console.WriteLine($"You recorded the eternal goal '{GetName()}' and earned {GetPoints()} points. You've recorded this goal {timesRecorded} times.");
+    }
+
+    public override string GetStatus()
+    {
+        return $"[∞] Times Recorded: {timesRecorded}";
+    }
+
+    public override string Serialize()
+    {
+        return $"EternalGoal|{GetName()}|{GetPoints()}|{timesRecorded}";
+    }
+
+    public static EternalGoal Deserialize(string[] parts)
+    {
+        var goal = new EternalGoal(parts[1], int.Parse(parts[2]));
+        goal.SetTimesRecorded(int.Parse(parts[3]));
+        return goal;
     }
 }
