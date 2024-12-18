@@ -108,7 +108,7 @@ public class GoalManager
                 int target = int.Parse(Console.ReadLine());
                 Console.Write("Enter bonus points: ");
                 int bonus = int.Parse(Console.ReadLine());
-                _goals.Add(new ChecklistGoal(0, target, bonus, description, name, points));
+                _goals.Add(new CheckListGoal(0, target, bonus, description, name, points));
                 break;
             default:
                 Console.WriteLine("Invalid goal type.");
@@ -135,22 +135,37 @@ public class GoalManager
 
     public void SaveGoals()
     {
-        using (StreamWriter writer = new StreamWriter("goals.json"))
+        string filePath = "goals.txt";
+        using (StreamWriter writer = new StreamWriter(filePath))
         {
-            string json = JsonConvert.SerializeObject(_goals, Formatting.Indented);
-            writer.Write(json);
+            foreach (Goal goal in _goals)
+            {
+                writer.WriteLine(goal.GetDetailsString());
+            }
         }
         Console.WriteLine("Goals saved successfully.");
     }
-
+    
     public void LoadGoals()
     {
-        if (File.Exists("goals.json"))
+        string filePath = "goals.txt";
+        if (File.Exists(filePath))
         {
-            using (StreamReader reader = new StreamReader("goals.json"))
+            _goals.Clear();
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                string json = reader.ReadToEnd();
-                _goals = JsonConvert.DeserializeObject<List<Goal>>(json);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Assuming the format of the line is "Name: Description (Points)"
+                    string[] parts = line.Split(new char[] { ':' }, 2);
+                    string name = parts[0].Trim();
+                    string[] details = parts[1].Split(new char[] { '(', ')' }, 3);
+                    string description = details[0].Trim();
+                    int points = int.Parse(details[1].Trim());
+
+                    _goals.Add(new SimpleGoal(name, description, points));
+                }
             }
             Console.WriteLine("Goals loaded successfully.");
         }
