@@ -135,20 +135,21 @@ public class GoalManager
 
     public void SaveGoals()
     {
-        string filePath = "goals.txt";
-        using (StreamWriter writer = new StreamWriter(filePath))
+        Console.Write("How do you want to save the file: ");
+        string fileName = Console.ReadLine();
+        using (StreamWriter writer = new StreamWriter(fileName))
         {
             foreach (Goal goal in _goals)
             {
                 writer.WriteLine(goal.GetDetailsString());
             }
         }
-        Console.WriteLine("Goals saved successfully.");
+        Console.WriteLine($"Goals saved to FileName:{fileName}  successfully.");
     }
     
     public void LoadGoals()
-    {
-        string filePath = "goals.txt";
+    {   Console.Write("What is the name of the file you wan to load from: ");
+        string filePath = Console.ReadLine();
         if (File.Exists(filePath))
         {
             _goals.Clear();
