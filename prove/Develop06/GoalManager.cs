@@ -26,7 +26,7 @@ public class GoalManager
             Console.WriteLine("4. Record Event");
             Console.WriteLine("5. Save Goals");
             Console.WriteLine("6. Load Goals");
-            Console.WriteLine("7. Exit");
+            Console.Write("7. Exit. ");
 
             string choice = Console.ReadLine();
             switch (choice)
@@ -85,7 +85,7 @@ public class GoalManager
         Console.WriteLine("\nChoose Goal Type:");
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
-        Console.WriteLine("3. Checklist Goal");
+        Console.Write("3. Checklist Goal");
 
         string choice = Console.ReadLine();
         Console.Write("Enter goal name: ");
