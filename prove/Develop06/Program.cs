@@ -29,13 +29,13 @@ public class Program
             switch (choice)
             {
                 case "1":
-                    CreateNewGoal();
+                    CreateGoal();
                     break;
                 case "2":
-                    RecordEventForGoal();
+                    RecordEvent();
                     break;
                 case "3":
-                    ViewAllGoals();
+                    ViewGoals();
                     break;
                 case "4":
                 LoadGoals();
@@ -53,7 +53,7 @@ public class Program
         }
     }
 
-    private static void CreateNewGoal()
+    private static void CreateGoal()
     {
         Console.WriteLine("\nWhat type of goal would you like to create?");
         Console.WriteLine("1. Simple goal");
@@ -114,7 +114,7 @@ public class Program
         Console.WriteLine($"Checklist goal '{name}' created successfully!");
     }
 
-    private static void RecordEventForGoal()
+    private static void RecordEvent()
     {
         if (goals.Count == 0)
         {
@@ -139,7 +139,7 @@ public class Program
         }
     }
 
-    private static void ViewAllGoals()
+    private static void ViewGoals()
     {
         if (goals.Count == 0)
         {
