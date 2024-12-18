@@ -1,50 +1,15 @@
-public class SimpleGoal : Goal
-{
-    private bool isCompleted;
-
-    public SimpleGoal(string name, int points) : base(name, points)
+public class SimpleGoal:Goal{
+    public SimpleGoal(string name, string descrition, int points) : base(name,descrition,points){}
+    public override void RecordEvent()
     {
-        isCompleted = false;
+        base.RecordEvent();
     }
-
-    public bool GetIsCompleted()
+    public override void IsComplete()
     {
-        return isCompleted;
+        base.IsComplete();
     }
-
-    public void SetIsCompleted(bool value)
+    public override string GetStringRepresentation()
     {
-        isCompleted = value;
-    }
-
-    public override void RecordEvent(ref int score)
-    {
-        if (!isCompleted)
-        {
-            isCompleted = true;
-            score += GetPoints();
-            Console.WriteLine($"You completed the goal '{GetName()}' and earned {GetPoints()} points!");
-        }
-        else
-        {
-            Console.WriteLine($"The goal '{GetName()}' is already completed.");
-        }
-    }
-
-    public override string GetStatus()
-    {
-        return isCompleted ? "[X]" : "[ ]";
-    }
-
-    public override string Serialize()
-    {
-        return $"SimpleGoal|{GetName()}|{GetPoints()}|{isCompleted}";
-    }
-
-    public static SimpleGoal Deserialize(string[] parts)
-    {
-        var goal = new SimpleGoal(parts[1], int.Parse(parts[2]));
-        goal.SetIsCompleted(bool.Parse(parts[3]));
-        return goal;
+        return base.GetStringRepresentation();
     }
 }

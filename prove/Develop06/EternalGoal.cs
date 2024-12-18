@@ -1,43 +1,15 @@
-public class EternalGoal : Goal
-{
-    private int timesRecorded;
-
-    public EternalGoal(string name, int points) : base(name, points)
+public class EternalGoal : Goal{
+    public EternalGoal(string name, string descrpition, int points) : base(name,descrpition,points){}
+    public override void RecordEvent()
     {
-        timesRecorded = 0;
+        base.RecordEvent();
     }
-
-    public int GetTimesRecorded()
+    public override void IsComplete()
     {
-        return timesRecorded;
+        base.IsComplete();
     }
-
-    public void SetTimesRecorded(int value)
+    public override string GetStringRepresentation()
     {
-        timesRecorded = value;
-    }
-
-    public override void RecordEvent(ref int score)
-    {
-        timesRecorded++;
-        score += GetPoints();
-        Console.WriteLine($"You recorded the eternal goal '{GetName()}' and earned {GetPoints()} points. You've recorded this goal {timesRecorded} times.");
-    }
-
-    public override string GetStatus()
-    {
-        return $"[∞] Times Recorded: {timesRecorded}";
-    }
-
-    public override string Serialize()
-    {
-        return $"EternalGoal|{GetName()}|{GetPoints()}|{timesRecorded}";
-    }
-
-    public static EternalGoal Deserialize(string[] parts)
-    {
-        var goal = new EternalGoal(parts[1], int.Parse(parts[2]));
-        goal.SetTimesRecorded(int.Parse(parts[3]));
-        return goal;
+        return base.GetStringRepresentation();
     }
 }

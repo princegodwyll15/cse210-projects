@@ -1,35 +1,28 @@
 public abstract class Goal
 {
-    private string name;
-    private int points;
+    private string _shortName;
+    private string _descrition;
+    private int _points;
 
-    protected Goal(string name, int points)
+    protected Goal(string name, string descrition, int points)
     {
-        this.name = name;
-        this.points = points;
+        this._shortName = name;
+        this._descrition =descrition;
+        this._points = points;
+    }
+    public virtual void RecordEvent(){
+
+    }
+    public virtual void IsComplete(){
+
+    }
+    public virtual string GetDetailsString(){
+        return"";
+
+    }
+    public virtual string GetStringRepresentation(){
+        return"";
+
     }
 
-    public string GetName()
-    {
-        return name;
-    }
-
-    public void SetName(string value)
-    {
-        name = value;
-    }
-
-    public int GetPoints()
-    {
-        return points;
-    }
-
-    public void SetPoints(int value)
-    {
-        points = value;
-    }
-
-    public abstract void RecordEvent(ref int score);
-    public abstract string GetStatus();
-    public abstract string Serialize();
 }
