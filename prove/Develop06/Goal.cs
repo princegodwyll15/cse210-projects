@@ -22,7 +22,7 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        return $"Name Of Event {_shortName}. Description {_description}. Points Earend ({_points} points)";
+        return $"Name Of Event {_shortName}. Description {_description}. ({_points})";
     }
 
     public int GetPoints()

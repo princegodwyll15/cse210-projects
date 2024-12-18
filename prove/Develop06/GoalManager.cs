@@ -161,7 +161,7 @@ public class GoalManager
         string[] lines = File.ReadAllLines(filePath);
         foreach (string line in lines)
         {
-            string[] parts = line.Split(',');
+            string[] parts = line.Split('.');
             string name = parts[0].Trim();
             string description = parts[1].Trim();
             int points = int.Parse(parts[2].Trim());
