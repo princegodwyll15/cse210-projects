@@ -85,7 +85,8 @@ public class GoalManager
         Console.WriteLine("\nChoose Goal Type:");
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
-        Console.Write("3. Checklist Goal");
+        Console.Write("3. Checklist Goal. ");
+        Console.WriteLine();
 
         string choice = Console.ReadLine();
         Console.Write("Enter goal name: ");
@@ -99,9 +100,11 @@ public class GoalManager
         {
             case "1":
                 _goals.Add(new SimpleGoal(name, description, points));
+                Console.WriteLine("Goal created successfully.");
                 break;
             case "2":
                 _goals.Add(new EternalGoal(name, description, points));
+                Console.WriteLine("Goal created successfully.");
                 break;
             case "3":
                 Console.Write("Enter target count: ");
@@ -109,6 +112,7 @@ public class GoalManager
                 Console.Write("Enter bonus points: ");
                 int bonus = int.Parse(Console.ReadLine());
                 _goals.Add(new CheckListGoal(0, target, bonus, description, name, points));
+                Console.WriteLine("Goal created successfully.");
                 break;
             default:
                 Console.WriteLine("Invalid goal type.");
