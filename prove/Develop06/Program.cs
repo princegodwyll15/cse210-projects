@@ -166,7 +166,7 @@ public class Program
                 writer.WriteLine(goal.Serialize());
             }
         }
-        Console.WriteLine("Goals and score saved successfully!");
+        Console.WriteLine($"Goals and score saved to file successfully! as: {fileName}");
     }
 
     private static void LoadGoals()
