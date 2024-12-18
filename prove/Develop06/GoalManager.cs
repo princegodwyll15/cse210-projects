@@ -150,33 +150,30 @@ public class GoalManager
         }
         Console.WriteLine($"Goals saved to FileName:{fileName}  successfully.");
     }
-    
     public void LoadGoals()
-    {   Console.Write("What is the name of the file you wan to load from: ");
-        string filePath = Console.ReadLine();
-        if (File.Exists(filePath))
-        {
-            _goals.Clear();
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // Assuming the format of the line is "Name: Description (Points)"
-                    string[] parts = line.Split(new char[] { ':' }, 2);
-                    string name = parts[0].Trim();
-                    string[] details = parts[1].Split(new char[] { '(', ')' }, 3);
-                    string description = details[0].Trim();
-                    int points = int.Parse(details[1].Trim());
+    {
+    Console.Write("What is the name of the file you want to load from: ");
+    string filePath = Console.ReadLine();
 
-                    _goals.Add(new SimpleGoal(name, description, points));
-                }
-            }
-            Console.WriteLine("Goals loaded successfully.");
-        }
-        else
+    if (File.Exists(filePath))
+    {
+        _goals.Clear();
+        string[] lines = File.ReadAllLines(filePath);
+        foreach (string line in lines)
         {
-            Console.WriteLine("No saved goals found.");
+            string[] parts = line.Split(',');
+            string name = parts[0].Trim();
+            string description = parts[1].Trim();
+            int points = int.Parse(parts[2].Trim());
+
+            _goals.Add(new SimpleGoal(name, description, points));
         }
+        Console.WriteLine("Goals loaded successfully.");
     }
+    else
+    {
+        Console.WriteLine("No saved goals found.");
+    }
+  }
 }
+    
