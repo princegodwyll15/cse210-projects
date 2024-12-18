@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+
 public class Program
 {
     private static int score = 0;
@@ -9,7 +10,6 @@ public class Program
 
     public static void Main()
     {
-        LoadGoals();
         Console.WriteLine("Welcome to the Eternal Quest program!");
 
         while (true)
@@ -19,7 +19,10 @@ public class Program
             Console.WriteLine("1. Create a new goal");
             Console.WriteLine("2. Record an event for a goal");
             Console.WriteLine("3. View all goals");
-            Console.WriteLine("4. Save and Exit");
+            Console.WriteLine("4. Load");
+            Console.WriteLine("5. Save");
+            Console.WriteLine("6. Exit");
+
 
             var choice = Console.ReadLine();
 
@@ -35,7 +38,12 @@ public class Program
                     ViewAllGoals();
                     break;
                 case "4":
+                LoadGoals();
+                    break;    
+                case "5":
                     SaveGoals();
+                    break;
+                case "6":
                     Console.WriteLine("Goodbye!");
                     return;
                 default:
@@ -148,7 +156,9 @@ public class Program
 
     private static void SaveGoals()
     {
-        using (var writer = new StreamWriter("goals.txt"))
+        Console.Write("Which name would you love to give to your file: ");
+        string fileName = Console.ReadLine();
+        using (var writer = new StreamWriter(fileName))
         {
             writer.WriteLine(score);
             foreach (var goal in goals)
@@ -161,9 +171,11 @@ public class Program
 
     private static void LoadGoals()
     {
-        if (!File.Exists("goals.txt")) return;
+        Console.Write("What's the name of the file you would love to load your goal from: ");
+        string loadFile = Console.ReadLine();
+        if (!File.Exists(loadFile)) return;
 
-        using (var reader = new StreamReader("goals.txt"))
+        using (var reader = new StreamReader(loadFile))
         {
             score = int.Parse(reader.ReadLine());
             string line;
