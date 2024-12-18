@@ -21,7 +21,7 @@ public class Program
             Console.WriteLine("3. View all goals");
             Console.WriteLine("4. Load");
             Console.WriteLine("5. Save");
-            Console.WriteLine("6. Exit");
+            Console.Write("6. Exit ");
 
 
             var choice = Console.ReadLine();
@@ -58,19 +58,23 @@ public class Program
         Console.WriteLine("\nWhat type of goal would you like to create?");
         Console.WriteLine("1. Simple goal");
         Console.WriteLine("2. Eternal goal");
-        Console.WriteLine("3. Checklist goal");
+        Console.Write("3. Checklist goal. ");
+        Console.WriteLine();
 
         var choice = Console.ReadLine();
 
         switch (choice)
         {
             case "1":
+                Console.WriteLine("Create A Simple Goal.");
                 CreateSimpleGoal();
                 break;
             case "2":
+                Console.WriteLine("Create An Eternal Goal.");
                 CreateEternalGoal();
                 break;
             case "3":
+                Console.WriteLine("Create A CheckList Goal.");
                 CreateChecklistGoal();
                 break;
             default:
