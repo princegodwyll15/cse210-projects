@@ -1,15 +1,24 @@
-public class SimpleGoal:Goal{
-    public SimpleGoal(string name, string descrition, int points) : base(name,descrition,points){}
+public class SimpleGoal : Goal
+{
+    private bool _isComplete;
+
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
+    {
+        _isComplete = false;
+    }
+
     public override void RecordEvent()
     {
-        base.RecordEvent();
+        if (!_isComplete)
+        {
+            _isComplete = true;
+            Console.WriteLine("Goal completed!");
+        }
+        else
+        {
+            Console.WriteLine("Goal is already complete.");
+        }
     }
-    public override void IsComplete()
-    {
-        base.IsComplete();
-    }
-    public override string GetStringRepresentation()
-    {
-        return base.GetStringRepresentation();
-    }
+
+    public override bool IsComplete() => _isComplete;
 }

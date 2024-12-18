@@ -1,15 +1,12 @@
-public class EternalGoal : Goal{
-    public EternalGoal(string name, string descrpition, int points) : base(name,descrpition,points){}
+// Eternal Goal Class
+public class EternalGoal : Goal
+{
+    public EternalGoal(string name, string description, int points) : base(name, description, points) { }
+
     public override void RecordEvent()
     {
-        base.RecordEvent();
+        Console.WriteLine("Event recorded for Eternal Goal.");
     }
-    public override void IsComplete()
-    {
-        base.IsComplete();
-    }
-    public override string GetStringRepresentation()
-    {
-        return base.GetStringRepresentation();
-    }
+
+    public override bool IsComplete() => false;
 }
